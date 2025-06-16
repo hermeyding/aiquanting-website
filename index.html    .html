@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切羽智能 AiQuanting - Leading AI-Generated Data Provider</title>
+    <style>
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary: #10b981;
+            --accent: #34d399;
+            --light: #f0fdf4;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: white;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e6f3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('/api/placeholder/800/600');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Solutions Section */
+        .solutions {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .solution-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .solution-image {
+            height: 200px;
+            background-color: #f1f3f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .solution-image img {
+            max-width: 60%;
+            max-height: 60%;
+        }
+        
+        .solution-content {
+            padding: 25px;
+        }
+        
+        .solution-content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .solution-content p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            font-size: 15px;
+            color: var(--gray);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-content {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f1f3f9;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .btn-white {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-white:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-about p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Added elements to match Databricks style */
+        .stats-section {
+            padding: 40px 0;
+            background-color: white;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            font-size: 16px;
+            color: var(--gray);
+        }
+
+        .customers {
+            padding: 60px 0;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .customers h2 {
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: var(--gray);
+        }
+        
+        .customer-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+        
+        .customer-logo {
+            width: 140px;
+            height: 60px;
+            margin: 15px;
+            opacity: 0.7;
+            filter: grayscale(100%);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+        
+        .customer-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        .use-cases {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab:hover {
+            color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .tab-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .tab-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .tab-text p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .check-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .check-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <svg width="280" height="50" viewBox="0 0 1120 200">
+                        <!-- Geometric Pattern (inspired by the logo) -->
+                        <g transform="translate(20, 20)">
+                            <!-- Top row -->
+                            <rect x="40" y="0" width="20" height="20" fill="#22c55e" opacity="0.8" transform="rotate(45 50 10)"/>
+                            
+                            <!-- Second row -->
+                            <rect x="20" y="20" width="20" height="20" fill="#16a34a" opacity="0.9" transform="rotate(45 30 30)"/>
+                            <rect x="40" y="20" width="20" height="20" fill="#10b981" opacity="1" transform="rotate(45 50 30)"/>
+                            <rect x="60" y="20" width="20" height="20" fill="#22c55e" opacity="0.8" transform="rotate(45 70 30)"/>
+                            
+                            <!-- Third row -->
+                            <rect x="0" y="40" width="20" height="20" fill="#34d399" opacity="0.7" transform="rotate(45 10 50)"/>
+                            <rect x="20" y="40" width="20" height="20" fill="#22c55e" opacity="1" transform="rotate(45 30 50)"/>
+                            <rect x="40" y="40" width="20" height="20" fill="#ffffff" opacity="1" transform="rotate(45 50 50)" stroke="#22c55e" stroke-width="2"/>
+                            <rect x="60" y="40" width="20" height="20" fill="#10b981" opacity="1" transform="rotate(45 70 50)"/>
+                            <rect x="80" y="40" width="20" height="20" fill="#34d399" opacity="0.7" transform="rotate(45 90 50)"/>
+                            
+                            <!-- Fourth row -->
+                            <rect x="20" y="60" width="20" height="20" fill="#16a34a" opacity="0.9" transform="rotate(45 30 70)"/>
+                            <rect x="40" y="60" width="20" height="20" fill="#10b981" opacity="1" transform="rotate(45 50 70)"/>
+                            <rect x="60" y="60" width="20" height="20" fill="#22c55e" opacity="0.8" transform="rotate(45 70 70)"/>
+                            
+                            <!-- Bottom row -->
+                            <rect x="40" y="80" width="20" height="20" fill="#22c55e" opacity="0.8" transform="rotate(45 50 90)"/>
+                        </g>
+                        
+                        <!-- Text logo -->
+                        <text x="160" y="80" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="#000">AiQ</text>
+                        <text x="280" y="80" font-family="Arial, sans-serif" font-weight="300" font-size="40" fill="#22c55e">|</text>
+                        <text x="320" y="80" font-family="SimHei, Microsoft YaHei, sans-serif" font-weight="600" font-size="45" fill="#000">切羽智能</text>
+                        
+                        <!-- English subtitle -->
+                        <text x="160" y="130" font-family="Arial, sans-serif" font-weight="400" font-size="28" fill="#6c757d">AiQuanting</text>
+                    </svg>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Platform</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">Industries</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Company</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a href="#" class="btn btn-outline">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI-Generated Data, Accelerating Innovation</h1>
+                <p>AiQuanting delivers high-quality, large-scale, cost-effective AI-generated data to solve bottlenecks in academic research, AI training, and big data analytics</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn">Get Started</a>
+                    <a href="#" class="btn btn-outline">Watch Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100K+</h3>
+                    <p>Samples per data category</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1/10</h3>
+                    <p>Traditional data cost</p>
+                </div>
+                <div class="stat-item">
+                    <h3>48hrs</h3>
+                    <p>Custom data delivery time</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Compliant with zero privacy risk</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Professional Solutions</h2>
+                <p>Providing professional-grade AI-generated data services for key vertical industries, accelerating research and innovation</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-image">
+                        <img src="/api/placeholder/300/200" alt="Financial Derivatives Data">
+                    </div>
+                    <div class="solution-content">
+                        <h3>QuantSynth™ Financial Derivatives Data</h3>
+                        <p>Providing high-quality synthetic data for financial derivatives, including option pricing, market anomalies, multi-asset correlations, and more to power quantitative trading and risk management.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-image">
+                        <img src="/api/placeholder/300/200" alt="Ophthalmology Medical Data">
+                    </div>
+                    <div class="solution-content">
+                        <h3>SynthVision™ Ophthalmology Medical Data</h3>
+                        <p>Generating high-precision ophthalmology medical image data, including retinal pathologies, OCT scans, and more to accelerate AI diagnostic algorithm development and medical research.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section with Tabs (Databricks style) -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Use Cases</h2>
+                <p>Explore how AiQuanting solves data challenges across different scenarios</p>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active">Academic Research</div>
+                <div class="tab">AI Model Development</div>
+                <div class="tab">Medical Device Development</div>
+                <div class="tab">Clinical Decision Support</div>
+            </div>
+            
+            <div class="tab-content active">
+                <div class="tab-grid">
+                    <div class="tab-image">
+                        <img src="/api/placeholder/500/300" alt="Academic Research Use Case">
+                    </div>
+                    <div class="tab-text">
+                        <h3>Accelerate Academic Research Process</h3>
+                        <p>AiQuanting provides academic researchers with unprecedented data resources, allowing you to focus on breakthrough research rather than data collection.</p>
+                        <ul class="check-list">
+                            <li>Access sufficient sample sizes of rare disease data</li>
+                            <li>Model time-series data showing disease progression</li>
+                            <li>Create research data with strictly controlled variables</li>
+                            <li>Eliminate privacy compliance and data approval processes</li>
+                        </ul>
+                        <a href="#" class="btn">Academic Partnership Program</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other tab contents would be here but hidden -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core Advantages</h2>
+                <p>Compared to traditional data, AiQuanting offers comprehensive data solutions</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>📊</i>
+                    </div>
+                    <h3>Massive Data Scale</h3>
+                    <p>Providing virtually unlimited training data, with up to 100K+ samples per category, solving data scarcity issues.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>💰</i>
+                    </div>
+                    <h3>Cost-Effective Pricing</h3>
+                    <p>Cost is only 1/10 of traditional data collection, with large-scale usage as low as 1/20, suitable for all budgets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>🛡️</i>
+                    </div>
+                    <h3>Fully Compliant, Zero Concerns</h3>
+                    <p>AI-generated data has no privacy risks, complying with HIPAA, GDPR, and global data regulations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>⚙️</i>
+                    </div>
+                    <h3>Highly Customizable</h3>
+                    <p>Generate data according to specific requirements with precise control over parameters and features for various research scenarios.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>🔍</i>
+                    </div>
+                    <h3>Rigorous Scientific Validation</h3>
+                    <p>All data undergoes statistical validation and expert review to ensure high consistency with real data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>⚡</i>
+                    </div>
+                    <h3>Rapid Delivery</h3>
+                    <p>Custom data delivered in as fast as 48 hours, significantly shortening development cycles and time-to-market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customers Section (Databricks style) -->
+    <section class="customers">
+        <div class="container">
+            <h2>Trusted by Leading Organizations</h2>
+            <div class="customer-logos">
+                <div class="customer-logo">
+                    <img src="/api/placeholder/140/60" alt="Customer Logo 1">
+                </div>
+                <div class="customer-logo">
+                    <img src="/api/placeholder/140/60" alt="Customer Logo 2">
+                </div>
+                <div class="customer-logo">
+                    <img src="/api/placeholder/140/60" alt="Customer Logo 3">
+                </div>
+                <div class="customer-logo">
+                    <img src="/api/placeholder/140/60" alt="Customer Logo 4">
+                </div>
+                <div class="customer-logo">
+                    <img src="/api/placeholder/140/60" alt="Customer Logo 5">
+                </div>
+                <div class="customer-logo">
+                    <img src="/api/placeholder/140/60" alt="Customer Logo 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Customer Testimonials</h2>
+                <p>Learn how AiQuanting helps customers solve data challenges and accelerate research and innovation</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "SynthVision's synthetic OCT dataset helped improve our diagnostic algorithm accuracy by 15%, especially in the identification of rare pathologies. The models trained on this data have successfully passed phase III clinical validation."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4>Prof. Zhang</h4>
+                            <p>R&D Director, Leading Ophthalmology AI Company</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "After using derivatives data generated by QuantSynth, our quantitative strategy backtesting became more comprehensive, especially in simulating extreme market conditions. This data helped us identify potential risk points in traditional models."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4>Dr. Li</h4>
+                            <p>Head of Quantitative Research, Leading Hedge Fund</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Begin Your Data Innovation Journey</h2>
+            <p>Try our synthetic data services for free and experience the transformative value AI-generated data brings to your research and development</p>
+            <a href="#" class="btn btn-white">Request a Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <svg width="200" height="40" viewBox="0 0 1000 160">
+                            <!-- Geometric Pattern (inspired by the logo) -->
+                            <g transform="translate(10, 10)">
+                                <!-- Top row -->
+                                <rect x="32" y="0" width="16" height="16" fill="#22c55e" opacity="0.8" transform="rotate(45 40 8)"/>
+                                
+                                <!-- Second row -->
+                                <rect x="16" y="16" width="16" height="16" fill="#16a34a" opacity="0.9" transform="rotate(45 24 24)"/>
+                                <rect x="32" y="16" width="16" height="16" fill="#10b981" opacity="1" transform="rotate(45 40 24)"/>
+                                <rect x="48" y="16" width="16" height="16" fill="#22c55e" opacity="0.8" transform="rotate(45 56 24)"/>
+                                
+                                <!-- Third row -->
+                                <rect x="0" y="32" width="16" height="16" fill="#34d399" opacity="0.7" transform="rotate(45 8 40)"/>
+                                <rect x="16" y="32" width="16" height="16" fill="#22c55e" opacity="1" transform="rotate(45 24 40)"/>
+                                <rect x="32" y="32" width="16" height="16" fill="#ffffff" opacity="1" transform="rotate(45 40 40)" stroke="#22c55e" stroke-width="1.5"/>
+                                <rect x="48" y="32" width="16" height="16" fill="#10b981" opacity="1" transform="rotate(45 56 40)"/>
+                                <rect x="64" y="32" width="16" height="16" fill="#34d399" opacity="0.7" transform="rotate(45 72 40)"/>
+                                
+                                <!-- Fourth row -->
+                                <rect x="16" y="48" width="16" height="16" fill="#16a34a" opacity="0.9" transform="rotate(45 24 56)"/>
+                                <rect x="32" y="48" width="16" height="16" fill="#10b981" opacity="1" transform="rotate(45 40 56)"/>
+                                <rect x="48" y="48" width="16" height="16" fill="#22c55e" opacity="0.8" transform="rotate(45 56 56)"/>
+                                
+                                <!-- Bottom row -->
+                                <rect x="32" y="64" width="16" height="16" fill="#22c55e" opacity="0.8" transform="rotate(45 40 72)"/>
+                            </g>
+                            
+                            <!-- Text logo -->
+                            <text x="110" y="60" font-family="Arial, sans-serif" font-weight="bold" font-size="45" fill="#ffffff">AiQ</text>
+                            <text x="200" y="60" font-family="Arial, sans-serif" font-weight="300" font-size="30" fill="#22c55e">|</text>
+                            <text x="230" y="60" font-family="SimHei, Microsoft YaHei, sans-serif" font-weight="600" font-size="35" fill="#ffffff">切羽智能</text>
+                            
+                            <!-- English subtitle -->
+                            <text x="110" y="100" font-family="Arial, sans-serif" font-weight="400" font-size="20" fill="rgba(255, 255, 255, 0.7)">AiQuanting</text>
+                        </svg>
+                    </div>
+                    <p>Providing professional-grade AI-generated data services, solving data bottlenecks in academic research, AI training, and big data analytics to accelerate innovation and development.</p>
+                    <div class="social-links">
+                        <a href="#"><i>W</i></a>
+                        <a href="#"><i>L</i></a>
+                        <a href="#"><i>T</i></a>
+                        <a href="#"><i>G</i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">QuantSynth™</a></li>
+                        <li><a href="#">SynthVision™</a></li>
+                        <li><a href="#">API Access</a></li>
+                        <li><a href="#">Data Validation Framework</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Technical Blog</a></li>
+                        <li><a href="#">White Papers</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 切羽智能 AiQuanting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
